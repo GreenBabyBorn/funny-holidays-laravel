@@ -1,0 +1,32 @@
+name: Deploy
+
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Add ssh key
+        run: |
+          mkdir ~/.ssh
+          echo "${{ secrets.KEY }}" > ~/.ssh/key
+          chmod 600 ~/.ssh/key
+      - name: Deploy to server
+        env:
+          options: ssh -i ~/.ssh/key -o StrictHostKeyChecking=no
+        run: |
+          touch .env
+          echo "${{secrets.ENV}}" > .env
+          rsync -avzpg . '${{secrets.USER}}@${{secrets.HOST}}:~/funnyholidays'
+          ssh ${{secrets.USER}}@${{secrets.HOST}} "cd ~/funnyholidays \
+          && docker system prune -f \
+          && npm ci \
+          && npm run dev \
+          && docker compose up -d \
+          && docker exec project_app composer update \
+          && docker exec project_app composer install \
+          && docker exec project_app php artisan migrate \
+          && docker exec project_app php artisan cache:clear \
+          && docker exec project_app php artisan storage:link \
+          && docker exec project_app php artisan route:cache"
