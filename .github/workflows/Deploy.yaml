@@ -22,7 +22,7 @@ jobs:
           ssh -i ~/.ssh/key -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.HOST}} "cd ~/funnyholidays \
           && docker system prune -f \
           && npm ci \
-          && npm run dev \
+          && npm run build \
           && docker compose up -d \
           && docker exec funnyholidays_app composer update \
           && docker exec funnyholidays_app composer install \
