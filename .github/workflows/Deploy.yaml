@@ -24,9 +24,9 @@ jobs:
           && npm ci \
           && npm run dev \
           && docker compose up -d \
-          && docker exec project_app composer update \
-          && docker exec project_app composer install \
-          && docker exec project_app php artisan migrate \
-          && docker exec project_app php artisan cache:clear \
-          && docker exec project_app php artisan storage:link \
-          && docker exec project_app php artisan route:cache"
+          && docker exec funnyholidays_app composer update \
+          && docker exec funnyholidays_app composer install \
+          && docker exec funnyholidays_app php artisan migrate \
+          && docker exec funnyholidays_app php artisan cache:clear \
+          && docker exec funnyholidays_app php artisan storage:link \
+          && docker exec funnyholidays_app php artisan route:cache"
