@@ -26,9 +26,6 @@ jobs:
           && docker compose up -d \
           && docker exec funnyholidays_app composer update \
           && docker exec funnyholidays_app composer install \
-          && docker-compose exec php ls -al /var/www/storage \
-          && docker-compose exec php chown -R $USER:www-data /var/www/storage \
-          && docker-compose exec php chown -R $USER:www-data /var/www/bootstrap/cache \
           && docker exec funnyholidays_app php artisan migrate \
           && docker exec funnyholidays_app php artisan cache:clear \
           && docker exec funnyholidays_app php artisan storage:link \
