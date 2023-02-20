@@ -13,8 +13,6 @@ jobs:
           echo "${{ secrets.KEY }}" > ~/.ssh/key
           chmod 600 ~/.ssh/key
       - name: Deploy to server
-        env:
-          options: ssh -i ~/.ssh/key -o StrictHostKeyChecking=no
         run: |
           touch .env
           echo "${{secrets.ENV}}" > .env
