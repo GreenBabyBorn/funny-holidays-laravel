@@ -16,8 +16,6 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./:/var/www
-    depends_on:
-      - db
     container_name: funnyholidays_app
 
   # db:
