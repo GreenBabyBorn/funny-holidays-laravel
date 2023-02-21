@@ -19,7 +19,7 @@ jobs:
 
           touch .env
           echo "${{secrets.ENV}}" > .env
-          rsync -avz -e "$options" --archive --delete . '${{secrets.USER}}@${{secrets.HOST}}:~/funnyholidays'
+          rsync -avz -e "$options" --archive --delete-excluded . '${{secrets.USER}}@${{secrets.HOST}}:~/funnyholidays'
           ssh -i ~/.ssh/key -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.HOST}} "cd ~/funnyholidays \
           && docker system prune -f \
           && npm ci \
