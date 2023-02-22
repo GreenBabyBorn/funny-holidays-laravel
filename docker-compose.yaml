@@ -6,8 +6,6 @@ services:
       - ./docker-compose/nginx:/etc/nginx/conf.d
     ports:
       - 8886:80
-    depends_on:
-      - app
     container_name: funnyholidays_nginx
 
   app:
