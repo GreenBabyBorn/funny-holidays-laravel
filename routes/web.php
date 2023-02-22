@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/', [App\Http\Controllers\Pages\HomeController::class, 'index']);
 Route::get('/reviews', [App\Http\Controllers\Pages\ReviewsController::class, 'index']);
