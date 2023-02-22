@@ -1,5 +1,4 @@
 FROM php:8.1-fpm
-FROM node:19
 
 RUN apt-get update && apt-get install -y \
 	apt-utils \
