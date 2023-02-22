@@ -19,16 +19,14 @@ jobs:
           touch .env
           echo "${{secrets.ENV}}" > .env
           rsync -e "$options" --archive --delete . '${{secrets.USER}}@${{secrets.HOST}}:~/funnyholidays'
-          # ssh -i ~/.ssh/key -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.HOST}} << EOF
-          # cd ~/funnyholidays
-          # docker system prune -f
-          # npm ci
-          # npm run build
-          # docker compose up -d
-          # docker exec funnyholidays_app composer update --optimize-autoloader
-          # docker exec funnyholidays_app composer install --optimize-autoloader --no-dev
-          # docker exec funnyholidays_app php artisan migrate
-          # docker exec funnyholidays_app php artisan cache:clear
-          # docker exec funnyholidays_app php artisan storage:link
-          # docker exec funnyholidays_app php artisan route:cache"
-          # EOF
+          ssh -i ~/.ssh/key -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.HOST}} "cd ~/funnyholidays \
+          && docker system prune -f \
+          && npm ci \
+          && npm run build \
+          && docker compose up -d \
+          && docker exec funnyholidays_app composer update --optimize-autoloader \
+          && docker exec funnyholidays_app composer install --optimize-autoloader --no-dev \
+          && docker exec funnyholidays_app php artisan migrate \
+          && docker exec funnyholidays_app php artisan cache:clear \
+          && docker exec funnyholidays_app php artisan storage:link \
+          && docker exec funnyholidays_app php artisan route:cache"
