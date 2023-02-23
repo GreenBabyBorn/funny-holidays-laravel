@@ -6,6 +6,8 @@ export default defineConfig({
         laravel({
             input: [
                 "resources/sass/app.scss",
+                "resources/admin/plugins/fontawesome-free/css/all.min.css",
+                "resources/admin/dist/css/adminlte.min.css",
                 "resources/js/app.js",
                 "resources/js/script.js",
                 "resources/admin/plugins/jquery/jquery.min.js",
