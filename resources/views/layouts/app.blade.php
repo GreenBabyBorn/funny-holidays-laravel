@@ -8,7 +8,7 @@
    <meta name="description" content="FunnyHolidays">
    <meta name="keywords" content="организация праздников, мероприятия, детские праздники">
    <title>FunnyHolidays - @yield('title')</title>
-
+   <link rel="icon" type="image/png" href="./favicon.png">
    @vite( ["resources/sass/app.scss",])
 
    @yield('styles')
