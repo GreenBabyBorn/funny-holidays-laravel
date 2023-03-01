@@ -19,7 +19,7 @@ jobs:
           touch .env
           echo "${{secrets.ENV}}" > .env
           rsync --chown=www-data:www-data -e "$options" -avzpg . '${{secrets.USER}}@${{secrets.HOST}}:/var/www/funnyholidays'
-          ssh -i ~/.ssh/key -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.HOST}} "cd ~/funnyholidays \
+          ssh -i ~/.ssh/key -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.HOST}} "cd /var/www/funnyholidays \
           && docker system prune -f \
           && npm ci \
           && npm run build \
